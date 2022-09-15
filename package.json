@@ -1,0 +1,38 @@
+{
+  "name": "@kitschpatrol/eleventy-plugin-parcel",
+  "version": "1.0.0",
+  "description": "A plugin to use Parcel to postprocess your Eleventy build.",
+  "main": ".eleventy.js",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12"
+  },
+  "keywords": [
+    "eleventy",
+    "parcel"
+  ],
+  "11ty": {
+    "compatibility": ">=2.0.0-canary.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Eric Mika",
+    "email": "eric@ericmika.com",
+    "url": "https://ericmika.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kitschpatrol/eleventy-plugin-parcel.git"
+  },
+  "bugs": "https://github.com/kitschpatrol/eleventy-plugin-parcel/issues",
+  "homepage": "https://github.com/kitschpatrol/eleventy-plugin-parcel",
+  "dependencies": {
+    "@mischnic/parcel-resolver-root": "^0.4.2",
+    "@parcel/config-default": "^2.7.0",
+    "@parcel/core": "^2.7.0",
+    "lodash.merge": "^4.6.2",
+    "lodash.some": "^4.6.0"
+  }
+}
