@@ -1,6 +1,6 @@
 # eleventy-plugin-parcel
 
-**A plugin integrating the [Parcel 2.x](https://parceljs.org) build tool with the [Eleventy 2.x](https://www.11ty.dev) static site generator.**
+**A plugin integrating the [Parcel 2.x](https://parceljs.org) build tool and dev server with the [Eleventy 2.x](https://www.11ty.dev) static site generator.**
 
 ## Overview
 
@@ -48,7 +48,7 @@ An official asset pipeline has been [a topic of discussion on Eleventy's issue 
     };
     ```
 
-    This serves your site as usual via an unmodified version of the Eleventy Dev Server, but Parcel will still processes your output.
+    This serves your site as usual via an unmodified version of the Eleventy Dev Server, but Parcel will still process your output.
 
 3.  Create a [`.parcelrc`](https://github.com/parcel-bundler/parcel/blob/65500fbb07ff100c1fe5dd32e98fb80ff889f32e/packages/core/types/index.js#L55) file in your project's root including at least the following:
 
@@ -77,50 +77,90 @@ An official asset pipeline has been [a topic of discussion on Eleventy's issue 
 
 Additional configuration may be passed to Parcel when the plugin is added to Eleventy's configuration.
 
-The `parcelOptions` object will pass any settings specified by Parcel's [InitialParcelOptions type](https://parceljs.org/plugin-system/api/#InitialParcelOptions).
+The available top-level option keys are as follows:
 
-If you're leaving the Parcel middleware enabled, you may also pass a `middlewareOptions` object as specified by the [http-proxy-middleware options type](https://github.com/chimurai/http-proxy-middleware#options).
+- `parcelOptions`
 
-Here's an example of passing options to the plugin in your `.eleventy.js` file:
+  Object passed to configure additional options as specified by Parcel's [InitialParcelOptions type](https://parceljs.org/plugin-system/api/#InitialParcelOptions).
 
-```js
-const eleventyParcelPlugin = require("@kitschpatrol/eleventy-plugin-parcel");
+  Defaults to:
 
-module.exports = function (eleventyConfig) {
-  eleventyConfig.addPlugin(eleventyParcelPlugin, {
-    middlewareOptions: {
-      pathRewrite: {
-        "^([^.]+?)$": "$1.html", // Works well with parcel-optimizer-friendly-urls
-      },
-    },
+  ```js
+  {
     parcelOptions: {
-      mode: "production", // Force optimization etc. no matter what
-    },
-  });
-};
-```
-
-By default, serving the site via e.g. `npx @11ty/eleventy --serve` will invoke Parcel in "development" mode. The plugin fiddles with the default options passed to Parcel based on its invocation context to ensure this is the case, but you may override this with an explicit options object passed to `addPlugin`. For example, if you want to skip the middleware and always build an optimized production build, even during development, you could pass the following options:
-
-```js
-const eleventyParcelPlugin = require("@kitschpatrol/eleventy-plugin-parcel");
-
-module.exports = function (eleventyConfig) {
-  eleventyConfig.addPlugin(eleventyParcelPlugin, {
-    useMiddleware: false,
-    middlewareOptions: {
-      pathRewrite: {
-        "^([^.]+?)$": "$1.html", // Works well with parcel-optimizer-friendly-urls
+      entries: "index.html",
+      defaultConfig: "@parcel/config-default",
+      shouldDisableCache: true,
+      shouldAutoInstall: true,
+      serveOptions: {
+        port: 3000,
       },
-    },
-    parcelOptions: {
-      mode: "production", // Force optimization etc. no matter the invocation context
-    },
-  });
-};
-```
+      hmrOptions: {
+        port: 3001,
+      }
+    }
+  }
+  ```
+
+  _Important notes about how the plugin dynamically modifies the `parcelOptions` object in an effort to make your life more convenient:_
+
+  By default, Parcel's `mode` option is set dynamically based on the context of the build. Serve builds, e.g. `npx @11ty/eleventy --serve`, gets `"development"` mode, while release builds, e.g. `npx @11ty/eleventy` gets `"production"`. You can override this by passing an explicit `mode` string to your `parcelOptions`.
+
+  The Plugin automatically uses your Eleventy project's `output` folder to correctly prefix your `parcelOptions.entries` string or array.
+
+  Similarly, for release builds, Parcel's `defaultTargetOptions.distDir` path is automatically set to match Eleventy's `output`.
+
+- `tempFolderName`
+
+  String with name of folder to stage the Parcel builds. Defaults to `.11ty-parcel` There's little reason to change this unless there is a conflict. This folder is automatically created and cleaned up during the build process.
+
+- `useMiddleware`
+
+  Boolean specifying whether to use the Parcel development server as middleware. Defaults to `true`.
+
+- `middlewareOptions`
+
+  Object passed to the middleware (if `useMiddleware: true`) as specified by the [http-proxy-middleware options type](https://github.com/chimurai/http-proxy-middleware#options).
 
 Parcel will also pull configuration from a [`.parcelrc`](https://github.com/parcel-bundler/parcel/blob/65500fbb07ff100c1fe5dd32e98fb80ff889f32e/packages/core/types/index.js#L55) file in your project's root to further customize the build process.
+
+Here are a few example configurations to customize the Parcel's plugin's behavior. These object are passed to the plugin via the `addPlugin` method, usually in your projects `.eleventy.js` file.
+
+**Example 1:**
+
+Skip the Parcel middleware and always build with all Parcel's optimizations enabled, regardless of invocation context:
+
+```js
+const eleventyParcelPlugin = require("@kitschpatrol/eleventy-plugin-parcel");
+
+module.exports = function (eleventyConfig) {
+  eleventyConfig.addPlugin(eleventyParcelPlugin, {
+    parcelOptions: {
+      mode: "production",
+    },
+    useMiddleware: false,
+  });
+};
+```
+
+**Example 2:**
+
+Customize settings passed to `http-proxy-middleware` to rewrite paths in a way that allows you to drop the `.html` from URLs. This works well with the [parcel-optimizer-friendly-urls Parcel plugin](https://github.com/vseventer/parcel-optimizer-friendly-urls).
+
+```js
+const eleventyParcelPlugin = require("@kitschpatrol/eleventy-plugin-parcel");
+
+module.exports = function (eleventyConfig) {
+  eleventyConfig.addPlugin(eleventyParcelPlugin, {
+    useMiddleware: true,
+    middlewareOptions: {
+      pathRewrite: {
+        "^([^.]+?)$": "$1.html", // Works well with parcel-optimizer-friendly-urls
+      },
+    },
+  });
+};
+```
 
 ## Caveats
 
@@ -131,7 +171,7 @@ Parcel will also pull configuration from a [`.parcelrc`](https://github.com/parc
 - Parcel's caching system seems to have issues with Eleventy's output, and is disabled via the `shouldDisableCache` option
 - Parcel is configured with `shouldAutoInstall` enabled by default, which means it will automatically make changes to your `package.json` as plugins are needed to handle various file types
 - To avoid duplication of certain configuration parameters, the plugin writes an object related to the [parcel-resolver-root](https://github.com/mischnic/parcel-resolver-root) Parcel plug-in default to your `package.json` if needed
-- Unlike Parcel 1.x, Parcel 2.x [does not bundle middleware functionality](https://github.com/parcel-bundler/parcel/discussions/4612) as part of its development server... Instead, the plugin establishes the middleware proxy via[http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware)
+- Unlike Parcel 1.x, Parcel 2.x [does not bundle middleware functionality](https://github.com/parcel-bundler/parcel/discussions/4612) as part of its development server... Instead, the plugin establishes the middleware proxy via [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware)
 - This plugin is only used on my personal side projects and has not been extensively tested
 
 ## Related Efforts to Integrate Eleventy and Parcel

@@ -7,9 +7,6 @@ const lodashSome = require("lodash.some");
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const DEFAULT_OPTIONS = {
-  tempFolderName: ".11ty-parcel",
-  useMiddleware: true,
-  middlewareOptions: {}, // In case you need to pass more options to createProxyMiddleware, e.g. specify a rewrite
   parcelOptions: {
     entries: "index.html", // Prefixed with build folder name automatically
     defaultConfig: "@parcel/config-default",
@@ -22,6 +19,9 @@ const DEFAULT_OPTIONS = {
       port: 3001, // Hmm https://github.com/parcel-bundler/parcel/issues/6994
     },
   },
+  tempFolderName: ".11ty-parcel",
+  useMiddleware: true,
+  middlewareOptions: {}, // In case you need to pass more options to createProxyMiddleware, e.g. specify a rewrite
 };
 
 class EleventyParcel {

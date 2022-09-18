@@ -1,6 +1,6 @@
 {
   "name": "@kitschpatrol/eleventy-plugin-parcel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A plugin to use Parcel to postprocess your Eleventy build.",
   "main": ".eleventy.js",
   "license": "MIT",
