@@ -10,7 +10,7 @@ Parcel is invoked automatically each time Eleventy finishes a build of your site
 
 This post-processing step happens entirely within Eleventy's plugin system; no additions or modifications to your npm scripts are required.
 
-This plugin is basically a port of Zach Leat's [elventy-plugin-vite](https://github.com/11ty/eleventy-plugin-vite) from Vite to Parcel.
+This plugin is basically a port of Zach Leat's [eleventy-plugin-vite](https://github.com/11ty/eleventy-plugin-vite) from Vite to Parcel.
 
 ## Motivation
 
@@ -112,7 +112,7 @@ The available top-level option keys are as follows:
 
 - `tempFolderName`
 
-  String with name of folder to stage the Parcel builds. Defaults to `.11ty-parcel` There's little reason to change this unless there is a conflict. This folder is automatically created and cleaned up during the build process.
+  String with name of folder to stage the Parcel builds. Defaults to `.11ty-parcel-temp` There's little reason to change this unless there is a conflict. This folder is automatically created and cleaned up during the release build process, but may linger during a `serve` build. It's recommended to add this path, along with `.parcel-cache` to you `.gitignore`.
 
 - `useMiddleware`
 
@@ -155,7 +155,7 @@ module.exports = function (eleventyConfig) {
     useMiddleware: true,
     middlewareOptions: {
       pathRewrite: {
-        "^([^.]+?)$": "$1.html", // Works well with parcel-optimizer-friendly-urls
+        "^([^.]+?)$": "$1.html",
       },
     },
   });

@@ -1,6 +1,6 @@
 {
   "name": "@kitschpatrol/eleventy-plugin-parcel",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A plugin to use Parcel to postprocess your Eleventy build.",
   "main": ".eleventy.js",
   "license": "MIT",
@@ -9,7 +9,8 @@
   },
   "keywords": [
     "eleventy",
-    "parcel"
+    "parcel",
+    "eleventy-plugin"
   ],
   "11ty": {
     "compatibility": ">=2.0.0-canary.4"

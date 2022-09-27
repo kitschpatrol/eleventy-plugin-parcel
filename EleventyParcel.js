@@ -19,7 +19,7 @@ const DEFAULT_OPTIONS = {
       port: 3001, // Hmm https://github.com/parcel-bundler/parcel/issues/6994
     },
   },
-  tempFolderName: ".11ty-parcel",
+  tempFolderName: ".11ty-parcel-temp",
   useMiddleware: true,
   middlewareOptions: {}, // In case you need to pass more options to createProxyMiddleware, e.g. specify a rewrite
 };
@@ -69,9 +69,17 @@ class EleventyParcel {
 
   async getServerMiddleware() {
     let bundler = new Parcel(
-      lodashMerge(this.options.parcelOptions, {
-        entries: this.getPrefixedEntries(this.outputDir),
-      })
+      lodashMerge(
+        {
+          defaultTargetOptions: {
+            distDir: this.options.tempFolderName,
+          },
+        },
+        this.options.parcelOptions,
+        {
+          entries: this.getPrefixedEntries(this.outputDir),
+        }
+      )
     );
     try {
       await bundler.watch();
