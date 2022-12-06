@@ -1,5 +1,7 @@
 # eleventy-plugin-parcel
 
+<a href="https://npmjs.com/package/@kitschpatrol/eleventy-plugin-parcel"><img src="https://img.shields.io/npm/v/@kitschpatrol/eleventy-plugin-parcel.svg" alt="npm package"></a>
+
 **A plugin integrating the [Parcel 2.x](https://parceljs.org) build tool and dev server with the [Eleventy 2.x](https://www.11ty.dev) static site generator.**
 
 ## Overview

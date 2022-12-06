@@ -1,6 +1,6 @@
 {
   "name": "@kitschpatrol/eleventy-plugin-parcel",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A plugin to use Parcel to postprocess your Eleventy build.",
   "main": ".eleventy.js",
   "license": "MIT",
@@ -31,8 +31,8 @@
   "homepage": "https://github.com/kitschpatrol/eleventy-plugin-parcel",
   "dependencies": {
     "@mischnic/parcel-resolver-root": "^0.4.2",
-    "@parcel/config-default": "^2.7.0",
-    "@parcel/core": "^2.7.0",
+    "@parcel/config-default": "^2.8.0",
+    "@parcel/core": "^2.8.0",
     "http-proxy-middleware": "^2.0.6",
     "lodash.merge": "^4.6.2",
     "lodash.some": "^4.6.0"
