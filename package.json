@@ -36,5 +36,10 @@
     "http-proxy-middleware": "^2.0.6",
     "lodash.merge": "^4.6.2",
     "lodash.some": "^4.6.0"
+  },
+  "peerDependencies": {
+    "@mischnic/parcel-resolver-root": "*",
+    "@parcel/core": "*",
+    "@parcel/config-default": "*"
   }
 }
