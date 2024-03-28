@@ -6,7 +6,7 @@ module.exports = function (eleventyConfig, options = {}) {
     eleventyConfig.versionCheck(pkg["11ty"].compatibility);
   } catch (e) {
     console.warn(
-      `[11ty] Warning: Eleventy Plugin (${pkg.name}) Compatibility: ${e.message}`
+      `[11ty] Warning: Eleventy Plugin (${pkg.name}) Compatibility: ${e.message}`,
     );
   }
 
@@ -37,7 +37,7 @@ module.exports = function (eleventyConfig, options = {}) {
       domdiff: false, // Dom diffs aren't playing well with parcel, breaks css - timing issue?
       showVersion: true,
     },
-    options.serverOptions
+    options.serverOptions,
   );
 
   if (eleventyParcel.options.useMiddleware) {
@@ -74,6 +74,6 @@ module.exports = function (eleventyConfig, options = {}) {
 
       eleventyParcel.setRunMode(runMode);
       await eleventyParcel.runBuild(results);
-    }
+    },
   );
 };

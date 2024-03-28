@@ -42,12 +42,12 @@ class EleventyParcel {
 
     if (!lodashSome([packageJson], resolverConfig)) {
       console.log(
-        "[11ty] 📦 Parcel plugin edited your package.json to include resolver configuration"
+        "[11ty] 📦 Parcel plugin edited your package.json to include resolver configuration",
       );
 
       fs.writeFileSync(
         "package.json",
-        JSON.stringify(lodashMerge(packageJson, resolverConfig), null, 2)
+        JSON.stringify(lodashMerge(packageJson, resolverConfig), null, 2),
       );
     }
   }
@@ -78,13 +78,13 @@ class EleventyParcel {
         this.options.parcelOptions,
         {
           entries: this.getPrefixedEntries(this.outputDir),
-        }
-      )
+        },
+      ),
     );
     try {
       await bundler.watch();
       console.log(
-        `[11ty] 📦 Started Parcel dev server middleware on port ${this.options.parcelOptions.serveOptions.port}`
+        `[11ty] 📦 Started Parcel dev server middleware on port ${this.options.parcelOptions.serveOptions.port}`,
       );
     } catch (e) {
       console.warn("[11ty] 📦 Encountered a Parcel watch error", e);
@@ -96,11 +96,12 @@ class EleventyParcel {
         {
           target: `http://localhost:${this.options.parcelOptions.serveOptions.port}/`,
         },
-        this.options.middlewareOptions
-      )
+        this.options.middlewareOptions,
+      ),
     );
   }
 
+  // eslint-disable-next-line no-unused-vars
   async runBuild(input) {
     // Tweak parcel options to build to temp path
     const tempPath = path.resolve(".", this.options.tempFolderName);
@@ -122,22 +123,22 @@ class EleventyParcel {
             defaultTargetOptions: {
               distDir: tempPath,
             },
-          }
-        )
+          },
+        ),
       );
 
       let { bundleGraph, buildTime } = await bundler.run();
 
       let bundles = bundleGraph.getBundles();
       console.log(
-        `[11ty] 📦 Parcel Built ${bundles.length} bundles in ${buildTime}ms`
+        `[11ty] 📦 Parcel Built ${bundles.length} bundles in ${buildTime}ms`,
       );
 
       // Clean up the Parcel build folder
     } catch (e) {
       console.warn(
         `[11ty] 📦 Encountered a Parcel build error, restoring original Eleventy output to ${this.outputDir}`,
-        e
+        e,
       );
       throw e;
     } finally {
