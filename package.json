@@ -30,7 +30,7 @@
   "scripts": {
     "lint": "eslint . && prettier --check .",
     "fix": "eslint . --fix && prettier --write .",
-    "release": "bumpp --commit 'Release: %s' && publish --otp $(op read 'op://Personal/Npmjs/one-time password?attribute=otp')"
+    "release": "bumpp --commit 'Release: %s' && npm publish --otp $(op read 'op://Personal/Npmjs/one-time password?attribute=otp')"
   },
   "peerDependencies": {
     "@mischnic/parcel-resolver-root": "^0.4.2",
