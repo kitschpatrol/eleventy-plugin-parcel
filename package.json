@@ -1,42 +1,56 @@
 {
   "name": "@kitschpatrol/eleventy-plugin-parcel",
   "version": "1.0.4",
-  "description": "A plugin to use Parcel to postprocess your Eleventy build.",
-  "main": ".eleventy.js",
-  "license": "MIT",
-  "engines": {
-    "node": ">=14.18.0"
+  "description": "A plugin integrating the Parcel build tool and dev server with the Eleventy static site generator.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kitschpatrol/tldraw-cli.git"
   },
-  "keywords": [
-    "eleventy",
-    "parcel",
-    "eleventy-plugin"
-  ],
-  "11ty": {
-    "compatibility": ">=2.0.0-canary.4"
-  },
-  "publishConfig": {
-    "access": "public"
+  "homepage": "https://github.com/kitschpatrol/eleventy-plugin-parcel",
+  "bugs": {
+    "url": "https://github.com/kitschpatrol/tldraw-cli/issues",
+    "email": "eric@ericmika.com"
   },
   "author": {
     "name": "Eric Mika",
     "email": "eric@ericmika.com",
     "url": "https://ericmika.com/"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/kitschpatrol/eleventy-plugin-parcel.git"
+  "license": "MIT",
+  "engines": {
+    "node": ">=14"
   },
-  "bugs": "https://github.com/kitschpatrol/eleventy-plugin-parcel/issues",
-  "homepage": "https://github.com/kitschpatrol/eleventy-plugin-parcel",
-  "dependencies": {
-    "http-proxy-middleware": "^2.0.6",
-    "lodash.merge": "^4.6.2",
-    "lodash.some": "^4.6.0"
+  "main": ".eleventy.js",
+  "keywords": [
+    "eleventy",
+    "parcel",
+    "eleventy-plugin",
+    "npm-package"
+  ],
+  "scripts": {
+    "lint": "eslint . && prettier --check .",
+    "fix": "eslint . --fix && prettier --write .",
+    "release": "bumpp --commit 'Release: %s' && publish --otp $(op read 'op://Personal/Npmjs/one-time password?attribute=otp')"
   },
   "peerDependencies": {
     "@mischnic/parcel-resolver-root": "^0.4.2",
     "@parcel/config-default": "^2.7.0",
     "@parcel/core": "^2.7.0"
+  },
+  "dependencies": {
+    "http-proxy-middleware": "^2.0.6",
+    "lodash.merge": "^4.6.2",
+    "lodash.some": "^4.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "11ty": {
+    "compatibility": ">=2.0.0"
+  },
+  "devDependencies": {
+    "bumpp": "^9.4.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5"
   }
 }
