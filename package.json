@@ -46,10 +46,10 @@
     "access": "public"
   },
   "11ty": {
-    "compatibility": ">=2.0.0"
+    "compatibility": "^2.0.0"
   },
   "devDependencies": {
-    "bumpp": "^9.4.0",
+    "bumpp": "^9.4.1",
     "eslint": "^8.57.0",
     "prettier": "^3.2.5"
   }
