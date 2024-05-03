@@ -31,9 +31,9 @@ This post-processing step happens entirely within Eleventy's plugin system; no a
 
 ### Dependencies
 
-This plugin is designed for Eleventy 2.x and Parcel 2.x. It is _not_ compatible with Eleventy 1.x. It has not yet been tested with Elevent 3.x. Node 14+ is required.
+This plugin is designed for Eleventy 2.x and Parcel 2.x. It is _not_ compatible with Eleventy 1.x. It has not yet been tested with Eleventy 3.x. Node 14+ is required.
 
-The installation instrutions below assume you already have an Elevent 2.x project that you want to add Parcel to.
+The installation instrutions below assume you already have an Eleventy 2.x project that you want to add Parcel to.
 
 ### Installation
 
@@ -210,6 +210,10 @@ Many others have combined Parcel and Eleventy in various ways and at different p
 - Mark van Seventer's [eleventy-parcel-boilerplate](https://github.com/vseventer/eleventy-parcel-boilerplate)
 - Chris D. Macrae's [parceleventy](https://github.com/chrisdmacrae/parceleventy)
 - Dusty Candland's [11ty-starter](https://github.com/candland/11ty-starter)
+
+Also:
+
+- CloudSh [blog post](https://cloudsh.com/eleventy/posts/2019/eleventy_and_parceljs_working_together.html)
 
 ## The future
 
