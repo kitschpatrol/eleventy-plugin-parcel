@@ -4,11 +4,11 @@
   "description": "A plugin integrating the Parcel build tool and dev server with the Eleventy static site generator.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kitschpatrol/tldraw-cli.git"
+    "url": "git+https://github.com/kitschpatrol/eleventy-plugin-parcel.git"
   },
   "homepage": "https://github.com/kitschpatrol/eleventy-plugin-parcel",
   "bugs": {
-    "url": "https://github.com/kitschpatrol/tldraw-cli/issues",
+    "url": "https://github.com/kitschpatrol/eleventy-plugin-parcel/issues",
     "email": "eric@ericmika.com"
   },
   "author": {
