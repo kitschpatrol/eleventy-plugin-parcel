@@ -1,6 +1,6 @@
 {
   "name": "@kitschpatrol/eleventy-plugin-parcel",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A plugin integrating the Parcel build tool and dev server with the Eleventy static site generator.",
   "repository": {
     "type": "git",
