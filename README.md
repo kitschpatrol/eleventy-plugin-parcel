@@ -59,7 +59,7 @@ The installation instrutions below assume you already have an Eleventy 2.x proje
    const eleventyParcelPlugin = require("@kitschpatrol/eleventy-plugin-parcel");
 
    module.exports = function (eleventyConfig) {
-     eleventyConfig.addPlugin(eleventyParcelPlugin { useMiddleware: false });
+     eleventyConfig.addPlugin(eleventyParcelPlugin, { useMiddleware: false });
    };
    ```
 
