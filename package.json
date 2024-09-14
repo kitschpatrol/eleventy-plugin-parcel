@@ -2,15 +2,9 @@
   "name": "@kitschpatrol/eleventy-plugin-parcel",
   "version": "1.0.7",
   "description": "A plugin integrating the Parcel build tool and dev server with the Eleventy static site generator.",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kitschpatrol/eleventy-plugin-parcel.git"
-  },
+  "repository": "github:kitschpatrol/eleventy-plugin-parcel",
   "homepage": "https://github.com/kitschpatrol/eleventy-plugin-parcel",
-  "bugs": {
-    "url": "https://github.com/kitschpatrol/eleventy-plugin-parcel/issues",
-    "email": "eric@ericmika.com"
-  },
+  "bugs": "https://github.com/kitschpatrol/eleventy-plugin-parcel/issues",
   "author": {
     "name": "Eric Mika",
     "email": "eric@ericmika.com",
@@ -18,8 +12,10 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=14"
+    "node": ">=14",
+    "pnpm": ">=9.0.0"
   },
+  "packageManager": "pnpm@9.10.0",
   "main": ".eleventy.js",
   "keywords": [
     "eleventy",
@@ -28,9 +24,10 @@
     "npm-package"
   ],
   "scripts": {
+    "clean": "git rm -f pnpm-lock.yaml ; git clean -fdX",
     "lint": "eslint . && prettier --check .",
     "fix": "eslint . --fix && prettier --write .",
-    "release": "bumpp --commit 'Release: %s' && npm publish --otp $(op read 'op://Personal/Npmjs/one-time password?attribute=otp')"
+    "release": "bumpp --commit 'Release: %s' && pnpm publish --otp $(op read 'op://Personal/Npmjs/one-time password?attribute=otp')"
   },
   "peerDependencies": {
     "@mischnic/parcel-resolver-root": "^0.4.2",
@@ -49,8 +46,8 @@
     "compatibility": "^2.0.0"
   },
   "devDependencies": {
-    "bumpp": "^9.4.1",
+    "bumpp": "^9.5.2",
     "eslint": "^8.57.0",
-    "prettier": "^3.3.1"
+    "prettier": "^3.3.3"
   }
 }
