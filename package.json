@@ -2,7 +2,10 @@
   "name": "@kitschpatrol/eleventy-plugin-parcel",
   "version": "1.0.8",
   "description": "A plugin integrating the Parcel build tool and dev server with the Eleventy static site generator.",
-  "repository": "github:kitschpatrol/eleventy-plugin-parcel",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kitschpatrol/eleventy-plugin-parcel.git"
+  },
   "homepage": "https://github.com/kitschpatrol/eleventy-plugin-parcel",
   "bugs": "https://github.com/kitschpatrol/eleventy-plugin-parcel/issues",
   "author": {
@@ -12,10 +15,9 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=14",
-    "pnpm": ">=9.0.0"
+    "node": ">=14"
   },
-  "packageManager": "pnpm@9.10.0",
+  "packageManager": "pnpm@10.5.2",
   "main": ".eleventy.js",
   "keywords": [
     "eleventy",
@@ -35,7 +37,7 @@
     "@parcel/core": "^2.7.0"
   },
   "dependencies": {
-    "http-proxy-middleware": "^2.0.6",
+    "http-proxy-middleware": "^2.0.7",
     "lodash.merge": "^4.6.2",
     "lodash.some": "^4.6.0"
   },
@@ -46,8 +48,16 @@
     "compatibility": "^2.0.0"
   },
   "devDependencies": {
-    "bumpp": "^9.5.2",
-    "eslint": "^8.57.0",
-    "prettier": "^3.3.3"
+    "bumpp": "^10.0.3",
+    "eslint": "^8.57.1",
+    "prettier": "^3.5.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@swc/core",
+      "lmdb",
+      "msgpackr-extract"
+    ]
   }
 }
