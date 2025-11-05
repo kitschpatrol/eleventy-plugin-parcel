@@ -17,7 +17,7 @@
   "engines": {
     "node": ">=14"
   },
-  "packageManager": "pnpm@10.5.2",
+  "packageManager": "pnpm@10.20.0",
   "main": ".eleventy.js",
   "keywords": [
     "eleventy",
@@ -29,7 +29,7 @@
     "clean": "git rm -f pnpm-lock.yaml ; git clean -fdX",
     "lint": "eslint . && prettier --check .",
     "fix": "eslint . --fix && prettier --write .",
-    "release": "bumpp --commit 'Release: %s' && pnpm publish --otp $(op read 'op://Personal/Npmjs/one-time password?attribute=otp')"
+    "release": "bumpp --commit 'Release: %s' && NPM_AUTH_TOKEN=$(op read 'op://Personal/npm/token') && pnpm publish"
   },
   "peerDependencies": {
     "@mischnic/parcel-resolver-root": "^0.4.2",
@@ -37,7 +37,7 @@
     "@parcel/core": "^2.7.0"
   },
   "dependencies": {
-    "http-proxy-middleware": "^2.0.7",
+    "http-proxy-middleware": "^2.0.9",
     "lodash.merge": "^4.6.2",
     "lodash.some": "^4.6.0"
   },
@@ -48,16 +48,8 @@
     "compatibility": "^2.0.0"
   },
   "devDependencies": {
-    "bumpp": "^10.0.3",
+    "bumpp": "^10.3.1",
     "eslint": "^8.57.1",
-    "prettier": "^3.5.3"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@parcel/watcher",
-      "@swc/core",
-      "lmdb",
-      "msgpackr-extract"
-    ]
+    "prettier": "^3.6.2"
   }
 }
