@@ -215,15 +215,6 @@ Also:
 
 - CloudSh [blog post](https://cloudsh.com/eleventy/posts/2019/eleventy_and_parceljs_working_together.html)
 
-## The future
-
-- [ ] Eleventy 3.x testing and support
-- [ ] Alternative to resolver dependency
-- [ ] Pass resolver plugin options differently to avoid dynamically modifying `package.js`
-- [ ] Support Parcel's cache (currently has issues with reloading)
-- [ ] Legacy BrowserSync dev server reload timing issues
-- [ ] More intelligent Parcel entry point than `index.html` to accommodate sites with un-crawlable pages
-
 ## Maintainers
 
 [@kitschpatrol](https://github.com/kitschpatrol)
