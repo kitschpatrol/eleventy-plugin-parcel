@@ -3,3 +3,6 @@ onlyBuiltDependencies:
   - '@swc/core'
   - lmdb
   - msgpackr-extract
+publicHoistPattern:
+  - '*eslint*'
+  - '*prettier*'
