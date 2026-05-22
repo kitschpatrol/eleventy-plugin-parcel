@@ -4,6 +4,10 @@ on:
   push:
     tags:
       - "v[0-9]*"
+      - "[0-9]*"
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -16,13 +20,17 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Log Token Type
+        env:
+          TOKEN: ${{ env.ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if [ ${{ env.ACCESS_TOKEN }} == ${{ secrets.GITHUB_TOKEN }} ]; then
+          if [ "$TOKEN" = "$GH_TOKEN" ]; then
             echo "🗝️ Authenticated with GitHub Token"
           else
             echo "🔑 Authenticated with Personal Access token"
@@ -31,7 +39,7 @@ jobs:
       - name: Validate Tag and Branch
         id: validation
         run: |
-          TAG=$(git tag --contains HEAD | grep '^v[0-9]' | head -n 1)
+          TAG=$(git tag --contains HEAD | grep -E '^v?[0-9]' | head -n 1)
           echo "🏷️ Tag for commit is: $TAG"
           BRANCH=$(git branch -r --contains tags/${GITHUB_REF_NAME} | grep 'origin/main' | xargs)
           if [[ -z "$BRANCH" ]]; then
@@ -40,11 +48,11 @@ jobs:
             echo "🕊️ Current branch is: $BRANCH"
           fi
           if [[ -z "$TAG" || -z "$BRANCH" ]]; then
-            echo "IS_VALID_COMMIT=false" >> $GITHUB_ENV
-            echo "TAG_NAME=''" >> $GITHUB_ENV
+            echo "IS_VALID_COMMIT=false" >> "$GITHUB_ENV"
+            echo "TAG_NAME=''" >> "$GITHUB_ENV"
           else
-            echo "IS_VALID_COMMIT=true" >> $GITHUB_ENV
-            echo "TAG_NAME=$TAG" >> $GITHUB_ENV
+            echo "IS_VALID_COMMIT=true" >> "$GITHUB_ENV"
+            echo "TAG_NAME=$TAG" >> "$GITHUB_ENV"
           fi
 
       - name: Release Notes
@@ -75,7 +83,11 @@ jobs:
 
       - name: Log Release Details
         if: env.IS_VALID_COMMIT == 'true'
+        env:
+          TAG: ${{ env.TAG_NAME }}
+          RELEASE_URL: ${{ steps.release.outputs.url }}
+          RELEASE_ID: ${{ steps.release.outputs.id }}
         run: |
-          echo "📦 Successfully released: ${{ env.TAG_NAME }}"
-          echo "🔗 Release URL: ${{ steps.release.outputs.url }}"
-          echo "🪪 Release ID: ${{ steps.release.outputs.id }}"
+          echo "📦 Successfully released: $TAG"
+          echo "🔗 Release URL: $RELEASE_URL"
+          echo "🪪 Release ID: $RELEASE_ID"

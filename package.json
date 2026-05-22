@@ -17,7 +17,7 @@
   "engines": {
     "node": ">=14"
   },
-  "packageManager": "pnpm@10.25.0",
+  "packageManager": "pnpm@11.2.2",
   "main": ".eleventy.js",
   "keywords": [
     "eleventy",
@@ -26,10 +26,10 @@
     "npm-package"
   ],
   "scripts": {
-    "clean": "git rm -f pnpm-lock.yaml ; git clean -fdX",
+    "clean": "shx rm -f pnpm-lock.yaml && git clean -fdX -e !.claude/",
     "lint": "eslint . && prettier --check .",
     "fix": "eslint . --fix && prettier --write .",
-    "release": "bumpp --commit 'Release: %s' && NPM_AUTH_TOKEN=$(op read 'op://Personal/npm/token') && pnpm publish"
+    "release": "bumpp --commit 'Release: %s' && NPM_AUTH_TOKEN=$(op read 'op://Personal/npm/token') pnpm publish"
   },
   "peerDependencies": {
     "@mischnic/parcel-resolver-root": "^0.4.2",
@@ -48,8 +48,9 @@
     "compatibility": "^2.0.0"
   },
   "devDependencies": {
-    "bumpp": "^10.3.2",
+    "bumpp": "^11.1.0",
     "eslint": "^8.57.1",
-    "prettier": "^3.7.4"
+    "prettier": "^3.8.3",
+    "shx": "^0.4.0"
   }
 }
