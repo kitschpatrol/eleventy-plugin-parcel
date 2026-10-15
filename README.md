@@ -219,7 +219,7 @@ Also:
 
 ## Acknowledgments
 
-This plugin is basically a port of Zach Leat's [eleventy-plugin-vite](https://github.com/11ty/eleventy-plugin-vite) from Vite to Parcel.
+This plugin is basically a port of Zach Leatherman's [eleventy-plugin-vite](https://github.com/11ty/eleventy-plugin-vite) from Vite to Parcel.
 
 <!-- footer -->
 

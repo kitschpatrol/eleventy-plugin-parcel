@@ -1,7 +1,7 @@
 {
   "name": "@kitschpatrol/eleventy-plugin-parcel",
   "version": "1.0.11",
-  "description": "A plugin integrating the Parcel build tool and dev server with the Eleventy static site generator.",
+  "description": "Integrate the Parcel build tool and dev server with the Eleventy static site generator.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kitschpatrol/eleventy-plugin-parcel.git"
@@ -26,10 +26,10 @@
     "npm-package"
   ],
   "scripts": {
-    "clean": "shx rm -f pnpm-lock.yaml && git clean -fdX -e !.claude/",
+    "clean-deep": "shx rm -f pnpm-lock.yaml && git clean -fdX -e !.claude/",
     "lint": "eslint . && prettier --check .",
     "fix": "eslint . --fix && prettier --write .",
-    "release": "bumpp --commit 'Release: %s' && NPM_AUTH_TOKEN=$(op read 'op://Personal/npm/token') pnpm publish"
+    "release": "bumpp --commit 'Release: %s' && pnpm publish --otp $(op item get npm --otp)"
   },
   "peerDependencies": {
     "@mischnic/parcel-resolver-root": "^0.4.2",
