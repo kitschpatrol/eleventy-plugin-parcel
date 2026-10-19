@@ -6,14 +6,14 @@
 
 <!-- badges -->
 
-[![NPM Package @kitschpatrol/eleventy-plugin-parcel](https://img.shields.io/npm/v/@kitschpatrol/eleventy-plugin-parcel.svg)](https://npmjs.com/package/@kitschpatrol/eleventy-plugin-parcel)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/license/mit/)
+[![NPM Package @kitschpatrol/eleventy-plugin-parcel](https://img.shields.io/npm/v/@kitschpatrol/eleventy-plugin-parcel.svg)](https://www.npmjs.com/package/@kitschpatrol/eleventy-plugin-parcel)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/license/mit)
 
 <!-- /badges -->
 
 <!-- short-description -->
 
-**A plugin integrating the Parcel build tool and dev server with the Eleventy static site generator.**
+**Integrate the Parcel build tool and dev server with the Eleventy static site generator.**
 
 <!-- /short-description -->
 
@@ -187,7 +187,7 @@ Simplicity and a sense of containment are part Eleventy's charm, and there's a c
 
 For a while I've hewn to a similar approach in my own projects, but have found myself plumbing together byzantine chains of smaller tools to optimize images, add cache-busting hashes, generate CSP headers, etc. etc. — problems that have been solved several times over by a variety of build tools.
 
-An official asset pipeline has been [a topic of discussion on Eleventy's issue pages over the years](https://github.com/11ty/eleventy/issues/272). [Vite](https://vitejs.dev) seems likely to be ordained as such, but Parcel has significant feature overlap — so I wanted to kick the tires on it as well as a point of comparison.
+An official asset pipeline has been [a topic of discussion on Eleventy's issue pages over the years](https://github.com/11ty/buildawesome/discussions/3982). [Vite](https://vite.dev) seems likely to be ordained as such, but Parcel has significant feature overlap — so I wanted to kick the tires on it as well as a point of comparison.
 
 ### Implementation notes
 
