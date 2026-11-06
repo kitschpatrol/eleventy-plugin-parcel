@@ -29,7 +29,7 @@
     "clean-deep": "shx rm -f pnpm-lock.yaml && git clean -fdX",
     "lint": "eslint . && prettier --check .",
     "fix": "eslint . --fix && prettier --write .",
-    "release": "bumpp --commit 'Release: %s' && pnpm publish --otp $(op item get npm --otp)"
+    "release": "bumpp --commit 'Release: %s' --all --execute 'chagent' && pnpm publish --otp $(op item get npm --otp)"
   },
   "peerDependencies": {
     "@mischnic/parcel-resolver-root": "^0.4.2",
@@ -48,7 +48,8 @@
     "compatibility": "^2.0.0"
   },
   "devDependencies": {
-    "bumpp": "^11.1.0",
+    "@kitschpatrol/chagent": "0.4.0",
+    "bumpp": "^12.3.0",
     "eslint": "^8.57.1",
     "prettier": "^3.8.3",
     "shx": "^0.4.0"
